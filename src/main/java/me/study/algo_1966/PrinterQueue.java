@@ -1,14 +1,29 @@
 package me.study.algo_1966;
 
-import java.util.*;
-import java.util.stream.Stream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PrinterQueue {
-    public static void main(String[] args) {
-        //TODO :
-        // 1.몇번의 test case 를 할지 첫째줄에서 받음(최초1회) - 2번부터 1의 갯수만큼 loop
-        // 2.문서의 총 갯수(N), 확인하고 싶은 문서의 첫위치(M)
-        // 3.실제 문서 우선순위
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int testCount = Integer.parseInt(bf.readLine());
+        StringBuffer str = new StringBuffer();
+
+        for (int i = 0; i < testCount; i++) {
+            String[] s = bf.readLine().split(" ");
+            int[] arr = Arrays.stream(bf.readLine().split(" "))
+                                .map(Integer::parseInt)
+                                .mapToInt(x -> x)
+                                .toArray();
+
+            str.append(search(arr, Integer.parseInt(s[1]))).append("\n");
+        }
+
+        System.out.print(str);
     }
 
     public static int search(int[] arr, int start) {
@@ -27,9 +42,9 @@ public class PrinterQueue {
                     return result;
                 } else {
                     maxValue = list.stream()
-                                    .map(node -> node.data)
-                                    .max(Integer::compareTo)
-                                    .get();
+                        .map(node -> node.data)
+                        .max(Integer::compareTo)
+                        .get();
                 }
             } else {
                 list.add(current);
