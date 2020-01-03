@@ -1,19 +1,20 @@
 package me.boj.datastructure.ps_1406;
 
 import java.io.*;
-import java.util.LinkedList;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Editor {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        LinkedList<Character> characters = new LinkedList<>();
-        for (char c : reader.readLine().toCharArray()) {
-            characters.add(c);
-        }
+        Stack<Character> left = new Stack<>();
+        Stack<Character> right = new Stack<>();
 
-        int cursor = characters.size();
+        String s = reader.readLine();
+        for (int i = 0; i < s.length(); i++) {
+            left.push(s.charAt(i));
+        }
 
         int m = Integer.parseInt(reader.readLine());
         while (m-- > 0) {
@@ -21,28 +22,31 @@ public class Editor {
             String op = st.nextToken();
             switch (op) {
                 case "L" :
-                    if (cursor > 0) {
-                        cursor--;
+                    if (!left.empty()) {
+                        right.push(left.pop());
                     }
                     break;
                 case "D" :
-                    if (cursor < characters.size()) {
-                        cursor++;
+                    if (!right.empty()) {
+                        left.push(right.pop());
                     }
                     break;
                 case "B" :
-                    if (cursor > 0) {
-                        characters.remove(--cursor);
+                    if (!left.empty()) {
+                        left.pop();
                     }
                     break;
                 case "P" :
-                    characters.add(cursor++, st.nextToken().charAt(0));
+                    left.push(st.nextToken().charAt(0));
                     break;
             }
         }
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-        for (Character character : characters) {
-            writer.append(character);
+        while (!left.empty()) {
+            right.push(left.pop());
+        }
+        while (!right.empty()) {
+            writer.append(right.pop());
         }
         writer.close();
         reader.close();
