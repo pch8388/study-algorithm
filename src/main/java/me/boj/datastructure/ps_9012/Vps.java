@@ -1,4 +1,4 @@
-package me.boj.ps_9012;
+package me.boj.datastructure.ps_9012;
 
 import java.io.BufferedReader;
 import java.io.IOException;

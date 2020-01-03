@@ -1,4 +1,4 @@
-package me.boj.ps_9093;
+package me.boj.datastructure.ps_9093;
 
 import java.io.*;
 import java.util.StringTokenizer;
