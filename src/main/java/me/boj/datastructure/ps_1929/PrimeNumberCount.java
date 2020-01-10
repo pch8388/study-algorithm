@@ -16,19 +16,22 @@ public class PrimeNumberCount {
         boolean[] checks = new boolean[max + 1];
         StringBuilder builder = new StringBuilder();
 
-        if (min < 2) {
-            min = 2;
+        for (int i = 0; i <= max; i++) {
+            checks[i] = false;
         }
-        for (int i = min; i < max; i++) {
+
+        for (int i = 2; i <= max; i++) {
             if (!checks[i]) {
-                builder.append(i).append("\n");
+                if (i >= min) {
+                    builder.append(i).append("\n");
+                }
             }
             for (int j = i + i; j <= max; j += i) {
                 checks[j] = true;
             }
         }
 
-        System.out.println(builder);
+        System.out.print(builder);
         reader.close();
     }
 
