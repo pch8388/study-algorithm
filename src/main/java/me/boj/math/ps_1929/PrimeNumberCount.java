@@ -1,4 +1,4 @@
-package me.boj.datastructure.ps_1929;
+package me.boj.math.ps_1929;
 
 import java.io.BufferedReader;
 import java.io.IOException;

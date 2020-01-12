@@ -1,4 +1,4 @@
-package me.boj.datastructure.ps_11005;
+package me.boj.math.ps_11005;
 
 import org.junit.jupiter.api.Test;
 
