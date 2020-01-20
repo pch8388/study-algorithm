@@ -1,31 +1,24 @@
 package me.boj.dp.ps_11726;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Tile {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int mod = 10007;
 
-        System.out.println(new Tiles(n).cal(n));
-    }
+        int[] d = new int[1001];
+        d[0] = 1;
+        d[1] = 1;
 
-    static class Tiles {
-        int[] arr;
-
-        Tiles(int n) {
-            arr = new int[n + 1];
+        //d[n] = d[n-1] + d[n-2]
+        for (int i = 2; i <= 1000; i++) {
+            d[i] = (d[i - 1] + d[i - 2]) % mod;
         }
 
-        public int cal(int n) {
-            arr[0] = 1;
-            arr[1] = 1;
-
-            // D[n] = D[n-1] + D[n-2]
-            for (int i = 2; i <= n; i++) {
-                arr[i] = (arr[i - 1] + arr[i - 2]) % 10007;
-            }
-            return arr[n];
-        }
+        System.out.println(d[n]);
     }
 }
