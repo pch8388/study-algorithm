@@ -7,23 +7,23 @@ import java.util.StringTokenizer;
 
 public class CardPack {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(reader.readLine());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
-        int[] arr = new int[n + 1];
         int[] d = new int[n + 1];
-        StringTokenizer st = new StringTokenizer(reader.readLine());
 
-        for (int k = 1; k <= n; k++) {
-            arr[k] = Integer.parseInt(st.nextToken());
+        //d[n] = max(d[n - j] + P[j]);
+        int[] P = new int[n + 1];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int x = 1; x <= n; x++) {
+            P[x] = Integer.parseInt(st.nextToken());
         }
 
-        //D[n] = max(D[n-i]+P[i]);
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++) {
-                int x = d[i - j] + arr[j];
-                if (d[i] < x) {
-                    d[i] = x;
+                int m = d[i - j] + P[j];
+                if (d[i] < m) {
+                    d[i] = m;
                 }
             }
         }
