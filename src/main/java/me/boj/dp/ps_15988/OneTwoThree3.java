@@ -12,21 +12,17 @@ public class OneTwoThree3 {
         int limit = 1000001;
         long mod = 1_000_000_009L;
         long[] d = new long[limit];
-
+        //4 => 7
         d[1] = 1;
-        d[2] = 2;
-        d[3] = 4;
-        // d[n] = d[n-1] + d[n-2] + d[n-3]
+        d[2] = d[1] + 1;
+        d[3] = d[1] + d[2] + 1;
+
         for (int i = 4; i < limit; i++) {
             d[i] = (d[i - 1] + d[i - 2] + d[i - 3]) % mod;
         }
 
-        StringBuilder builder = new StringBuilder();
         while (n-- > 0) {
-            builder.append(d[Integer.parseInt(br.readLine())]).append("\n");
+            System.out.println(d[Integer.parseInt(br.readLine())]);
         }
-
-        System.out.println(builder);
-        br.close();
     }
 }
