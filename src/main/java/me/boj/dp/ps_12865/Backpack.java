@@ -14,10 +14,10 @@ public class Backpack {
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
 
-        int[] w = new int[n];
-        int[] v = new int[n];
+        int[] w = new int[n + 1];
+        int[] v = new int[n + 1];
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             st = new StringTokenizer(br.readLine());
             w[i] = Integer.parseInt(st.nextToken());
             v[i] = Integer.parseInt(st.nextToken());
@@ -27,23 +27,21 @@ public class Backpack {
     }
 
     static int solve(int n, int k, int[] w, int[] v) {
-        int[] d = new int[n];
-        for (int i = 1; i < n; i++) {
-            d[i] = v[i];
-            int weight = w[i];
-            if (w[i] > k) {
-                d[i] = -1;
-                continue;
-            }
-            for (int j = i - 1; j >= 0; j--) {
-                if (d[i] + v[j] > d[i] && weight + w[j] <= k) {
-                    d[i] += v[j];
-                    weight += w[j];
+        int[][] d = new int[n + 1][k + 1];
+
+        // d[i][j] = if(j < w[i]) d[i - 1][j]
+        //         = if(j >= w[i]) max (d[i - 1][j], d[i - 1][j - w[i]] + v[i])
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= k; j++) {
+                if (j < w[i]) {
+                    d[i][j] = d[i - 1][j];
+                } else {
+                    d[i][j] = Math.max(d[i - 1][j], d[i - 1][j - w[i]] + v[i]);
                 }
             }
         }
 
-        Arrays.sort(d);
-        return d[n - 1];
+        return d[n][k];
     }
 }
