@@ -20,17 +20,19 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        System.out.println(calculate(n, arr));
+        System.out.println(solve(n, arr));
     }
 
-    static int calculate(int n, int[] arr) {
+    static int solve(int n, int[] arr) {
+
         int[] d = new int[n];
 
-        for (int i = 0; i < n; i++) {
+        d[0] = 1;
+        for (int i = 1; i < n; i++) {
             d[i] = 1;
-            for (int j = 0; j < i; j++) {
-                if (arr[j] < arr[i] && d[i] < d[j] + 1) {
-                    d[i] = d[j] + 1;
+            for (int j = 1; j <= i; j++) {
+                if (arr[i] > arr[i - j] && d[i] < d[i - j] + 1) {
+                    d[i] = d[i - j] + 1;
                 }
             }
         }
