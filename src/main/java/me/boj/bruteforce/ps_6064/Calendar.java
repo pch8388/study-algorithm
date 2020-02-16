@@ -1,7 +1,6 @@
 package me.boj.bruteforce.ps_6064;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
