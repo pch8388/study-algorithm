@@ -1,4 +1,4 @@
-package me.boj.etc;
+package me.boj.etc.ps_10951;
 
 import java.io.IOException;
 import java.util.Scanner;
