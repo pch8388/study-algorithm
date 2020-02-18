@@ -33,7 +33,7 @@ public class Permutation {
         while (i > 0 && arr[i - 1] >= arr[i]) i--;
         if (i <= 0) return false;
         int j = n - 1;
-        while (arr[j] <= arr[j - 1]) j--;
+        while (arr[j] <= arr[i - 1]) j--;
 
         int temp = arr[i - 1];
         arr[i - 1] = arr[j];
