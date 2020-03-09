@@ -6,69 +6,67 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class DfsBfs {
+    static ArrayList<ArrayList<Integer>> graphs = new ArrayList<>();
+    static boolean[] checks;
+    static StringBuilder sb = new StringBuilder();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int s = Integer.parseInt(st.nextToken());
+        int start = Integer.parseInt(st.nextToken());
 
         for (int i = 0; i < n + 1; i++) {
-            graph.add(new ArrayList<>());
+            graphs.add(new ArrayList<>());
         }
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
-            graph.get(a).add(b);
-            graph.get(b).add(a);
+            int from = Integer.parseInt(st.nextToken());
+            int to = Integer.parseInt(st.nextToken());
+
+            graphs.get(from).add(to);
+            graphs.get(to).add(from);
         }
 
-        for (ArrayList<Integer> list : graph) {
-            Collections.sort(list);
+        for (ArrayList<Integer> graph : graphs) {
+            Collections.sort(graph);
         }
 
-        booleans = new boolean[n + 1];
-        dfs(s);
-        builder.append("\n");
-        booleans = new boolean[n + 1];
-        bfs(s);
-        System.out.println(builder);
+        checks = new boolean[n + 1];
+        dfs(start);
+        sb.append("\n");
+        checks = new boolean[n + 1];
+        bfs(start);
+
+        System.out.println(sb);
     }
 
-
-    static boolean[] booleans;
-    static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-    static StringBuilder builder = new StringBuilder();
-
     static void dfs(int x) {
-        if (booleans[x]) return;
+        if (checks[x]) return;
 
-        booleans[x] = true;
-        builder.append(x).append(" ");
-        int size = graph.get(x).size();
-        for (int i = 0; i < size; i++) {
-            int k = graph.get(x).get(i);
-            if (!booleans[k]) {
-                dfs(k);
+        checks[x] = true;
+        sb.append(x).append(" ");
+        for (int edge : graphs.get(x)) {
+            if (!checks[edge]) {
+                dfs(edge);
             }
         }
     }
 
-    static void bfs(int x) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(x);
-        booleans[x] = true;
-        while (!queue.isEmpty()) {
-            int y = queue.remove();
-            builder.append(y).append(" ");
-            int size = graph.get(y).size();
-            for (int i = 0; i < size; i++) {
-                int k = graph.get(y).get(i);
-                if (!booleans[k]) {
-                    booleans[k] = true;
-                    queue.add(k);
+    static void bfs(int start) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(start);
+
+        checks[start] = true;
+        while (!q.isEmpty()) {
+            int x = q.remove();
+            sb.append(x).append(" ");
+            for (int edge : graphs.get(x)) {
+                if (!checks[edge]) {
+                    q.add(edge);
+                    checks[edge] = true;
                 }
             }
         }
