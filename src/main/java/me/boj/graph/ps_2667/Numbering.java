@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 
 public class Numbering {
 
@@ -43,7 +44,12 @@ public class Numbering {
 
         Collections.sort(list);
         sb.append(list.size()).append("\n");
-        list.forEach(i -> sb.append(i).append("\n"));
+
+        Optional<String> strings = list.stream()
+            .map(String::valueOf)
+            .reduce((s1, s2) -> s1 + "\n" + s2);
+        strings.ifPresent(sb::append);
+
         System.out.println(sb);
     }
 
