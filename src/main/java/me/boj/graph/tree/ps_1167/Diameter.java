@@ -1,4 +1,4 @@
-package me.boj.graph.ps_1167;
+package me.boj.graph.tree.ps_1167;
 
 import java.io.BufferedReader;
 import java.io.IOException;
