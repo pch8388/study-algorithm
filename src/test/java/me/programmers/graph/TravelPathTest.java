@@ -24,8 +24,8 @@ class TravelPathTest {
 
 
 
-        assertThat(r1).containsExactly("ICN", "JFK", "HND", "IAD");
-        assertThat(r2).containsExactly("ICN", "ATL", "ICN", "SFO", "ATL", "SFO");
-        assertThat(r3).containsExactly("ICN", "BOO", "DOO", "BOO", "ICN", "COO", "DOO", "COO", "BOO");
+        assertThat(r1).containsExactlyInAnyOrder("ICN", "JFK", "HND", "IAD");
+        assertThat(r2).containsExactlyInAnyOrder("ICN", "ATL", "ICN", "SFO", "ATL", "SFO");
+        assertThat(r3).containsExactlyInAnyOrder("ICN", "BOO", "DOO", "BOO", "ICN", "COO", "DOO", "COO", "BOO");
     }
 }
