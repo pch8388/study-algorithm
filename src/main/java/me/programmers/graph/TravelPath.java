@@ -16,20 +16,18 @@ public class TravelPath {
 
         dfs(visited, st, 0);
 
-        if (result.size() > 1) {
-            result.sort((o1, o2) -> {
-                for (int i = 0; i < o1.size(); i++) {
-                    String s1 = o1.get(i);
-                    String s2 = o2.get(i);
+        result.sort((o1, o2) -> {
+            for (int i = 0; i < o1.size(); i++) {
+                String s1 = o1.get(i);
+                String s2 = o2.get(i);
 
-                    if (!s1.equals(s2)) {
-                        return s1.compareTo(s2);
-                    }
+                if (!s1.equals(s2)) {
+                    return s1.compareTo(s2);
                 }
+            }
 
-                return 0;
-            });
-        }
+            return 0;
+        });
 
         Stack<String> res = result.remove(0);
         String[] answer = new String[res.size()];
