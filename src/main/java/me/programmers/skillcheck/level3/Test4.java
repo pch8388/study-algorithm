@@ -1,18 +1,13 @@
 package me.programmers.skillcheck.level3;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
+
+import static java.util.Comparator.reverseOrder;
 
 public class Test4 {
     public long solution(int n, int[] works) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>((o1, o2) -> {
-            if (o1 < o2) {
-                return 1;
-            }
-            if (o1 > o2) {
-                return -1;
-            }
-            return 0;
-        });
+        PriorityQueue<Integer> queue = new PriorityQueue<>(reverseOrder());
 
         for (int work : works) {
             queue.add(work);
