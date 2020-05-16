@@ -8,7 +8,7 @@ class TileTest {
 
     @Test
     void solve() {
-        int r1 = Tile.solve(4);
+        long r1 = Tile.solve(4);
 
         assertThat(r1).isEqualTo(5);
 
