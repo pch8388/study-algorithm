@@ -1,4 +1,4 @@
-package me.leetcode;
+package me.codility.lesson4;
 
 import java.util.Arrays;
 

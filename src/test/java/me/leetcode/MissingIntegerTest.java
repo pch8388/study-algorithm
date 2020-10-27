@@ -1,5 +1,6 @@
 package me.leetcode;
 
+import me.codility.lesson4.MissingInteger;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
