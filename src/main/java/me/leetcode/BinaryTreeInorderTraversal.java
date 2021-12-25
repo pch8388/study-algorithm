@@ -7,22 +7,18 @@ public class BinaryTreeInorderTraversal {
 
     public List<Integer> inorderTraversal(TreeNode root) {
         result = new ArrayList<>();
-        if (root == null) {
-            return result;
-        }
         dfs(root);
         return result;
     }
 
     static List<Integer> result;
     void dfs(TreeNode root) {
-        if (root.left != null) {
-            dfs(root.left);
+        if (root == null) {
+            return;
         }
+        dfs(root.left);
         result.add(root.val);
-        if (root.right != null) {
-            dfs(root.right);
-        }
+        dfs(root.right);
     }
 
     static class TreeNode {
