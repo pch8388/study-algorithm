@@ -6,19 +6,18 @@ import java.util.List;
 public class BinaryTreeInorderTraversal {
 
     public List<Integer> inorderTraversal(TreeNode root) {
-        result = new ArrayList<>();
-        dfs(root);
+        List<Integer> result = new ArrayList<>();
+        dfs(root, result);
         return result;
     }
 
-    static List<Integer> result;
-    void dfs(TreeNode root) {
+    void dfs(TreeNode root, List<Integer> result) {
         if (root == null) {
             return;
         }
-        dfs(root.left);
+        dfs(root.left, result);
         result.add(root.val);
-        dfs(root.right);
+        dfs(root.right, result);
     }
 
     static class TreeNode {
