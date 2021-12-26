@@ -1,8 +1,8 @@
 package me.leetcode;
 
 public class FloodFill {
-    private static final int[] dx = {-1, 0, 1, 0};
-    private static final int[] dy = {0, -1, 0, 1};
+    private static final int[] directionX = {-1, 0, 1, 0};
+    private static final int[] directionY = {0, -1, 0, 1};
 
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
         final int originColor = image[sr][sc];
@@ -18,14 +18,20 @@ public class FloodFill {
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                int nx = x + dx[i];
-                int ny = y + dy[i];
+                int nx = x + directionX[i];
+                int ny = y + directionY[i];
 
-                if (nx >= 0 && ny >= 0 && nx < image.length && ny < image[0].length
-                    && image[nx][ny] == originColor) {
+                if (isRangeValue(nx, ny, image) && image[nx][ny] == originColor) {
                     fillColor(image, nx, ny, originColor, newColor);
                 }
             }
         }
+    }
+
+    private boolean isRangeValue(int nx, int ny, int[][] image) {
+        return nx >= 0
+            && ny >= 0
+            && nx < image.length
+            && ny < image[0].length;
     }
 }
