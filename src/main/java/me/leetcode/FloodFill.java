@@ -13,7 +13,7 @@ public class FloodFill {
         return image;
     }
 
-    void fillColor(int[][] image, int x, int y, int originColor, int newColor) {
+    private void fillColor(int[][] image, int x, int y, int originColor, int newColor) {
         image[x][y] = newColor;
 
         for (int i = 0; i < 4; i++) {
